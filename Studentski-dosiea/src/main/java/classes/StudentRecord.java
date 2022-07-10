@@ -6,6 +6,15 @@ import java.util.List;
 public class StudentRecord {
     final String code;
     String field;
+
+    public String getCode() {
+        return code;
+    }
+
+    public String getField() {
+        return field;
+    }
+
     List<Integer> grades;
 
     public StudentRecord() {
@@ -18,5 +27,9 @@ public class StudentRecord {
         this.code = code;
         this.field = field;
         this.grades = grades;
+    }
+
+    public double getMeanAverageGrade() {
+        throw new UnsupportedOperationException();
     }
 }
