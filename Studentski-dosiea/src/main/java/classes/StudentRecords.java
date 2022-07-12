@@ -1,11 +1,12 @@
 package classes;
 
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.util.*;
 import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.*;
 
 public class StudentRecords {
 
@@ -29,11 +30,41 @@ public class StudentRecords {
                     .skip(2)
                     .mapToInt(Integer::parseInt)
                     .boxed()
-                    .collect(Collectors.toList());
+                    .collect(toList());
             studentRecordList.add(new StudentRecord(code, field, grades));
             ++linesRead;
         }
         scanner.close();
         return linesRead;
+    }
+
+    public void writeTable(OutputStream outputStream) {
+//        Map<String, List<StudentRecord>>outputMap = studentRecordList.stream().collect(groupingBy(
+//                StudentRecord::getField, collectingAndThen(
+//                        toList(), e-> e.stream()
+//                                .sorted(Comparator.comparingDouble(StudentRecord::getMeanAverageGrade).thenComparing(StudentRecord::getCode))
+//                                .collect(toList())
+//                )));
+        Map<String, List<String>> groupedRecords = studentRecordList.stream()
+                .collect(groupingBy(StudentRecord::getField, collectingAndThen(
+                        toList(), records -> records.stream()
+                                .sorted(Comparator.comparingDouble(StudentRecord::getMeanAverageGrade).reversed()
+                                        .thenComparing(StudentRecord::getCode))
+                                .map(record -> record.getCode()+" " + String.format("%.2f", record.getMeanAverageGrade()))
+                                .collect(toList())
+                )));
+
+        try (PrintWriter printWriter = new PrintWriter(outputStream)){
+            for (String key : groupedRecords.keySet()){
+                printWriter.println(key);
+                groupedRecords.get(key).stream()
+                        .forEachOrdered(printWriter::println);
+            }
+        }
+//        PrintWriter pw = new PrintWriter(outputStream);
+//        outputMap.keySet().stream().forEachOrdered(k -> {
+//            pw.println(k);
+//            outputMap.get(k).stream().forEachOrdered(e-> pw.println(e.getCode()+" "+e.getMeanAverageGrade()));
+//        });
     }
 }

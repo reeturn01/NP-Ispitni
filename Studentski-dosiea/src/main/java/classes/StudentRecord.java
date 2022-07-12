@@ -1,5 +1,7 @@
 package classes;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +32,7 @@ public class StudentRecord {
     }
 
     public double getMeanAverageGrade() {
-        throw new UnsupportedOperationException();
+        double average = grades.stream().mapToDouble(Double::valueOf).average().getAsDouble();
+        return Double.parseDouble(BigDecimal.valueOf(average).setScale(2, RoundingMode.HALF_UP).toString());
     }
 }
