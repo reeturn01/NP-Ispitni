@@ -17,8 +17,11 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static org.mockito.Mockito.*;
 
 public class StudentRecordsShould {
     public static Stream<Arguments> factoryForWriteTable() {
@@ -31,10 +34,10 @@ public class StudentRecordsShould {
 
     private static StudentRecord getStudentRecordMockWith(String code, String field, String grades) {
         Double average = Arrays.stream(grades.split("\\s+")).mapToDouble(Double::parseDouble).average().orElse(0);
-        StudentRecord studentRecordMock = Mockito.mock(StudentRecord.class);
-        Mockito.when(studentRecordMock.getCode())
+        StudentRecord studentRecordMock = mock(StudentRecord.class);
+        when(studentRecordMock.getCode())
                 .thenReturn(code);
-        Mockito.when(studentRecordMock.getMeanAverageGrade())
+        when(studentRecordMock.getMeanAverageGrade())
                 .thenReturn(average);
         return studentRecordMock;
     }
@@ -47,10 +50,12 @@ public class StudentRecordsShould {
     })
     void read_and_store_data_from_inputStream_and_return_num_records_read_for_readRecords(String inputData, int functionReturn){
         InputStream inputStream = new ByteArrayInputStream(inputData.getBytes());
+        List<StudentRecord> studentRecordList = mock(List.class);
 
-        StudentRecords studentRecords = new StudentRecords();
 
+        StudentRecords studentRecords = new StudentRecords(studentRecordList);
         Assertions.assertEquals(functionReturn, studentRecords.readRecords(inputStream));
+        verify(studentRecordList, times(functionReturn)).add(any());
     }
 
     @ParameterizedTest(name = "[{index}]")

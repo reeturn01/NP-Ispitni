@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class StudentRecords {
 
@@ -13,21 +14,26 @@ public class StudentRecords {
         studentRecordList = new ArrayList<>();
     }
 
+    public StudentRecords(List<StudentRecord> studentRecordList) {
+        this.studentRecordList = studentRecordList;
+    }
+
     public int readRecords(InputStream inputStream) {
         int linesRead = 0;
         Scanner scanner = new Scanner(inputStream);
-        while (scanner.hasNext()){
+        while (scanner.hasNextLine()){
             String[] lineSegments = scanner.nextLine().split("\\s+");
             String code = lineSegments[0];
             String field = lineSegments[1];
-            List<Integer> grades = new ArrayList<>();
-            Arrays.stream(lineSegments)
+            List<Integer> grades = Arrays.stream(lineSegments)
                     .skip(2)
                     .mapToInt(Integer::parseInt)
-                    .forEachOrdered(grades::add);
+                    .boxed()
+                    .collect(Collectors.toList());
             studentRecordList.add(new StudentRecord(code, field, grades));
             ++linesRead;
         }
+        scanner.close();
         return linesRead;
     }
 }
