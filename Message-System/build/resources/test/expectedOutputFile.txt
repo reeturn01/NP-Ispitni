@@ -1,0 +1,109 @@
+===ADDING MESSAGES TO TOPICS===
+The topic topic1 does not have a partition with number 7
+===BROKER STATE AFTER ADDITION OF MESSAGES===
+Broker with  1 topics:
+Topic:     topic1 Partitions:     6
+1 : Count of messages:     4
+Messages:
+Message{timestamp=2018-03-13T16:55, message='Message from the system with id16574'}
+Message{timestamp=2018-05-23T08:40, message='Message from the system with id11249'}
+Message{timestamp=2018-07-07T04:06, message='Message from the system with id19472'}
+Message{timestamp=2018-07-13T17:48, message='Message from the system with id19979'}
+2 : Count of messages:     3
+Messages:
+Message{timestamp=2018-02-18T02:33, message='Message from the system with id16683'}
+Message{timestamp=2018-02-26T13:13, message='Message from the system with id14148'}
+Message{timestamp=2018-04-14T08:46, message='Message from the system with id16962'}
+3 : Count of messages:     5
+Messages:
+Message{timestamp=2018-04-07T22:35, message='Message from the system with id16936'}
+Message{timestamp=2018-04-22T05:02, message='Message from the system with id14512'}
+Message{timestamp=2018-05-16T00:13, message='Message from the system with id16060'}
+Message{timestamp=2018-05-22T16:50, message='Message from the system with id16013'}
+Message{timestamp=2018-07-08T22:54, message='Message from the system with id13643'}
+4 : Count of messages:     5
+Messages:
+Message{timestamp=2018-06-05T23:54, message='Message from the system with id18641'}
+Message{timestamp=2018-06-07T22:59, message='Message from the system with id12290'}
+Message{timestamp=2018-07-02T00:31, message='Message from the system with id18377'}
+Message{timestamp=2018-07-05T08:58, message='Message from the system with id17945'}
+Message{timestamp=2018-07-11T07:12, message='Message from the system with id12458'}
+5 : Count of messages:     5
+Messages:
+Message{timestamp=2018-04-23T18:51, message='Message from the system with id14499'}
+Message{timestamp=2018-05-04T06:17, message='Message from the system with id13928'}
+Message{timestamp=2018-06-12T21:30, message='Message from the system with id11313'}
+Message{timestamp=2018-06-19T11:58, message='Message from the system with id10926'}
+Message{timestamp=2018-06-22T00:44, message='Message from the system with id16194'}
+6 : Count of messages:     5
+Messages:
+Message{timestamp=2018-03-07T14:59, message='Message from the system with id15083'}
+Message{timestamp=2018-05-21T15:10, message='Message from the system with id10204'}
+Message{timestamp=2018-05-28T01:04, message='Message from the system with id15794'}
+Message{timestamp=2018-06-15T02:06, message='Message from the system with id12436'}
+Message{timestamp=2018-07-12T14:01, message='Message from the system with id16388'}
+===CHANGE OF TOPICS CONFIGURATION===
+===ADDING NEW MESSAGES TO TOPICS===
+===BROKER STATE AFTER CONFIGURATION CHANGE===
+Broker with  1 topics:
+Topic:     topic1 Partitions:     9
+1 : Count of messages:     4
+Messages:
+Message{timestamp=2018-03-13T16:55, message='Message from the system with id16574'}
+Message{timestamp=2018-05-23T08:40, message='Message from the system with id11249'}
+Message{timestamp=2018-07-07T04:06, message='Message from the system with id19472'}
+Message{timestamp=2018-07-13T17:48, message='Message from the system with id19979'}
+2 : Count of messages:     5
+Messages:
+Message{timestamp=2018-01-29T04:05, message='Message from the system with id19917'}
+Message{timestamp=2018-05-18T19:10, message='Message from the system with id17907'}
+Message{timestamp=2018-05-30T21:40, message='Message from the system with id19407'}
+Message{timestamp=2018-06-07T03:45, message='Message from the system with id12042'}
+Message{timestamp=2018-07-08T01:59, message='Message from the system with id18600'}
+3 : Count of messages:     5
+Messages:
+Message{timestamp=2018-04-30T22:14, message='Message from the system with id18893'}
+Message{timestamp=2018-05-16T00:13, message='Message from the system with id16060'}
+Message{timestamp=2018-05-22T16:50, message='Message from the system with id16013'}
+Message{timestamp=2018-06-30T17:07, message='Message from the system with id12370'}
+Message{timestamp=2018-07-08T22:54, message='Message from the system with id13643'}
+4 : Count of messages:     5
+Messages:
+Message{timestamp=2018-01-29T19:07, message='Message from the system with id13328'}
+Message{timestamp=2018-06-07T22:59, message='Message from the system with id12290'}
+Message{timestamp=2018-07-02T00:31, message='Message from the system with id18377'}
+Message{timestamp=2018-07-05T08:58, message='Message from the system with id17945'}
+Message{timestamp=2018-07-11T07:12, message='Message from the system with id12458'}
+5 : Count of messages:     5
+Messages:
+Message{timestamp=2018-04-10T21:56, message='Message from the system with id11034'}
+Message{timestamp=2018-06-10T12:06, message='Message from the system with id12479'}
+Message{timestamp=2018-06-12T21:30, message='Message from the system with id11313'}
+Message{timestamp=2018-06-19T11:58, message='Message from the system with id10926'}
+Message{timestamp=2018-06-22T00:44, message='Message from the system with id16194'}
+6 : Count of messages:     5
+Messages:
+Message{timestamp=2018-06-08T09:20, message='Message from the system with id18185'}
+Message{timestamp=2018-06-15T02:06, message='Message from the system with id12436'}
+Message{timestamp=2018-07-09T15:49, message='Message from the system with id14293'}
+Message{timestamp=2018-07-11T09:08, message='Message from the system with id11508'}
+Message{timestamp=2018-07-12T14:01, message='Message from the system with id16388'}
+7 : Count of messages:     5
+Messages:
+Message{timestamp=2018-03-19T05:57, message='Message from the system with id13344'}
+Message{timestamp=2018-05-21T00:36, message='Message from the system with id13464'}
+Message{timestamp=2018-06-05T01:40, message='Message from the system with id18527'}
+Message{timestamp=2018-06-30T07:35, message='Message from the system with id12451'}
+Message{timestamp=2018-07-11T16:02, message='Message from the system with id12313'}
+8 : Count of messages:     3
+Messages:
+Message{timestamp=2018-02-09T08:36, message='Message from the system with id13062'}
+Message{timestamp=2018-03-01T21:48, message='Message from the system with id11427'}
+Message{timestamp=2018-05-27T03:47, message='Message from the system with id14331'}
+9 : Count of messages:     5
+Messages:
+Message{timestamp=2018-03-02T23:05, message='Message from the system with id15781'}
+Message{timestamp=2018-03-25T02:35, message='Message from the system with id19519'}
+Message{timestamp=2018-04-22T01:16, message='Message from the system with id13219'}
+Message{timestamp=2018-05-21T11:59, message='Message from the system with id14593'}
+Message{timestamp=2018-06-30T06:03, message='Message from the system with id17509'}

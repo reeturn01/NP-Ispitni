@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tests.StudentRecordShould" tests="4" skipped="0" failures="0" errors="0" timestamp="2022-07-16T19:39:08" hostname="DESKTOP-898HIR8" time="0.541">
+  <properties/>
+  <testcase name="[1] qlacn1, IKI, 7 10 9 9 8, 8.60" classname="tests.StudentRecordShould" time="0.466"/>
+  <testcase name="[2] fbvux2, IKI, 6 9 10 7 8 10 9 8 10 7 9, 8.45" classname="tests.StudentRecordShould" time="0.023"/>
+  <testcase name="[3] ugwfy9, IKI, 9 9 8 7 8 10 9 6 9 10 8, 8.45" classname="tests.StudentRecordShould" time="0.013"/>
+  <testcase name="[4] cscbh7, IKI, 10 6 10 7 10 8 9 6 8 7 6 9 6 7 9 7 9 9 8 7 8 6 8 9 7 8 8 8 8 9 8 10 9 10, 8.06" classname="tests.StudentRecordShould" time="0.004"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
