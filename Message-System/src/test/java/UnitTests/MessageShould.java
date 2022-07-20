@@ -2,15 +2,14 @@ package UnitTests;
 
 import main.Message;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.CsvFileSource;
 
 import java.time.LocalDateTime;
 
 public class MessageShould {
-//    private Message message;
-//
+    private Message message;
+
 //    @ParameterizedTest
 //    @CsvSource(delimiter = '|', value = {
 //      "2018-03-13T16:55| Message from the system with id16574| EHFGB| Message{timestamp=2018-03-13T16:55, message='Message from the system with id16574'}",
@@ -26,5 +25,14 @@ public class MessageShould {
 //        //String expected = "Message{timestamp=2018-03-13T16:55, message='Message from the system with id16574'}";
 //        Assertions.assertEquals(expected, message.toString());
 //    }
+
+    @ParameterizedTest
+    @CsvFileSource(delimiter = ';', resources = "/MessageShould Test Values/ToStringTestValues.csv")
+    void return_string_representation_of_this_object(LocalDateTime timestamp, String messageText, String key, String expectedOutput){
+        message = new Message(timestamp, messageText, key);
+
+        Assertions.assertEquals(expectedOutput, message.toString());
+    }
+
 
 }
