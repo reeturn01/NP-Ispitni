@@ -13,7 +13,7 @@ import java.io.*;
 import java.time.LocalDateTime;
 import java.util.Scanner;
 
-public class MessageSystemTest {
+public class MessageSystemIT {
     private final ByteArrayOutputStream stdOutputCaptor = new ByteArrayOutputStream();
     private final ByteArrayInputStream stdInputCaptor = new ByteArrayInputStream(HelperGenerationFunctions.readSampleInput().getBytes());
     private final PrintStream stdOutput = System.out;
