@@ -3,36 +3,42 @@ package main;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class MessageBroker {
     private LocalDateTime minimumDate;  //Poceten datum
-    private Integer capacityPerTopic;   //Maksimalen kapacitet na sekoja particija za site temi
+    private Integer partitionsLimit;   //Maksimalen kapacitet na sekoja particija za site temi
     private Map<String, Topic> topicMap;
-    public MessageBroker(LocalDateTime minimumDate, Integer capacityPerTopic) {
+    public MessageBroker(LocalDateTime minimumDate, Integer partitionsLimit) {
         this.minimumDate = minimumDate;
-        this.capacityPerTopic = capacityPerTopic;
+        this.partitionsLimit = partitionsLimit;
         this.topicMap = new HashMap<>();
     }
 
-    public MessageBroker(LocalDateTime minimumDate, Integer capacityPerTopic, HashMap<String, Topic> topicHashSet) {
+    public MessageBroker(LocalDateTime minimumDate, Integer partitionsLimit, TreeMap<String, Topic> topicHashSet) {
 
         this.minimumDate = minimumDate;
-        this.capacityPerTopic = capacityPerTopic;
+        this.partitionsLimit = partitionsLimit;
         this.topicMap = topicHashSet;
     }
 
     public void addTopic(String topicName, int partitionsCount) {
-        topicMap.putIfAbsent(topicName, new Topic(topicName,partitionsCount));
+        topicMap.putIfAbsent(topicName, new Topic(topicName, partitionsLimit,partitionsCount));
     }
 
     public void addMessage(String topicName, Message message) throws PartitionDoesNotExistException{
-        if (topicMap.containsKey(topicName))
-            topicMap.get(topicName).addMessage(message);
+        if (!topicMap.containsKey(topicName) || message.getTimestamp().isBefore(minimumDate))
+            return;
+        topicMap.get(topicName).addMessage(message);
     }
 
     public void changeTopicSettings(String topicName, int partitions) {
         if (topicMap.containsKey(topicName))
             topicMap.get(topicName).changeNumberOfPartitions(partitions);
+    }
+
+    public boolean containsTopic(String topicName){
+        return topicMap.containsKey(topicName);
     }
 
     @Override

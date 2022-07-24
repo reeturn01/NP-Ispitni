@@ -10,12 +10,14 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.mockito.ArgumentMatcher;
 import org.mockito.ArgumentMatchers;
+import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -27,8 +29,20 @@ import static org.mockito.Mockito.*;
 public class MessageBrokerShouldTest {
 
     @Mock
-    private HashMap<String, Topic> topicHashMapMock;
-    private HashMap<String, Topic> injectedMap;
+    private TreeMap<String, Topic> topicHashMapMock;
+    private TreeMap<String, Topic> injectedMap;
+
+    @Mock
+    private Topic OTHER_TOPIC_1;
+    private final String OTHER_TOPIC_1_NAME = "OTHER_TOPIC_1_NAME";
+
+    @Mock
+    private Topic OTHER_TOPIC_2;
+    private final String OTHER_TOPIC_2_NAME = "OTHER_TOPIC_2_NAME";
+
+    @Mock
+    private Topic OTHER_TOPIC_3;
+    private final String OTHER_TOPIC_3_NAME = "OTHER_TOPIC_3_NAME";
 
     @DisplayName("addTopic() should:")
     @Nested
@@ -46,20 +60,18 @@ public class MessageBrokerShouldTest {
                                                 String topicName,
                                                 int topicPartitionsCount){
 
-            MessageBroker messageBroker = new MessageBroker(minimumDate, capacityPerTopic, topicHashMapMock);
+            injectedMap.put(OTHER_TOPIC_1_NAME, OTHER_TOPIC_1);
+            injectedMap.put(OTHER_TOPIC_2_NAME, OTHER_TOPIC_2);
+            injectedMap.put(OTHER_TOPIC_3_NAME, OTHER_TOPIC_3);
+
+            injectedMap.keySet().forEach(tName -> Assertions.assertNotEquals(tName, topicName));
+
+            MessageBroker messageBroker = new MessageBroker(minimumDate, capacityPerTopic, injectedMap);
 
 
             messageBroker.addTopic(topicName, topicPartitionsCount);
 
-            //verify(topicHashMapMock).put(topicName, any(Topic.class));
-           verify(topicHashMapMock).putIfAbsent(topicName, new Topic(topicName, topicPartitionsCount));
-
-//            String expectedOutputString = "Broker with  1 topics:\r\n"+
-//                    String.format("Topic: %10s Partitions: %5d%n", topicName, partitionsCount) +
-//                    IntStream.range(1, partitionsCount+1)
-//                            .mapToObj(i -> String.format("%d : Count of messages:%5d%n", i, 0)+"Messages:\r\n")
-//                            .collect(Collectors.joining());
-
+            Assertions.assertTrue(messageBroker.containsTopic(topicName));
 
         }
 
@@ -94,7 +106,7 @@ public class MessageBrokerShouldTest {
             Integer capacityPerTopic = 5;
             int partitionsCount = 5;
 
-            HashMap<String, Topic> injectedMap = new HashMap<>();
+            TreeMap<String, Topic> injectedMap = new TreeMap<>();
             Topic topic_to_add_message_to = mock(Topic.class);
             Topic other_topic_mock_1 = mock(Topic.class);
             Topic other_topic_mock_2 = mock(Topic.class);
@@ -123,7 +135,7 @@ public class MessageBrokerShouldTest {
             Integer capacityPerTopic = 5;
             String invalid_topic_name = "invalid topic name";
 
-            HashMap<String, Topic> injectedMap = new HashMap<>();
+            TreeMap<String, Topic> injectedMap = new TreeMap<>();
             Topic topic_mock_1 = mock(Topic.class);
             Topic topic_mock_2 = mock(Topic.class);
             Topic topic_mock_3 = mock(Topic.class);
@@ -146,11 +158,30 @@ public class MessageBrokerShouldTest {
             verify(topic_mock_3, never()).addMessage(any());
 
         }
+
+        @DisplayName("Fail to add Message with timestamp older than the minimum date for this broker")
+        @Test
+        void failToAddMessage() throws PartitionDoesNotExistException {
+            injectedMap.put(OTHER_TOPIC_1_NAME, OTHER_TOPIC_1);
+            injectedMap.put(OTHER_TOPIC_2_NAME, OTHER_TOPIC_2);
+            injectedMap.put(OTHER_TOPIC_3_NAME, OTHER_TOPIC_3);
+
+            LocalDateTime minimumDate = LocalDateTime.of(2000,1,1,0,0);
+            Integer capacityPerTopic = 50;
+            MessageBroker messageBroker = new MessageBroker(minimumDate, capacityPerTopic, injectedMap);
+
+            Message messageToAdd = mock(Message.class);
+            when(messageToAdd.getTimestamp()).thenReturn(LocalDateTime.of(1999, 1, 1, 0, 0));
+
+            messageBroker.addMessage(OTHER_TOPIC_1_NAME, messageToAdd);
+
+            verifyNoInteractions(OTHER_TOPIC_1, OTHER_TOPIC_2, OTHER_TOPIC_3);
+        }
     }
 
     @BeforeEach
     void setUp() {
-        injectedMap = new HashMap<>();
+        injectedMap = new TreeMap<>();
     }
 
     @Test
@@ -179,6 +210,24 @@ public class MessageBrokerShouldTest {
         verify(topic_to_change_settings_to).changeNumberOfPartitions(new_partitions_count_for_topic);
         verify(other_topic_mock_1, never()).changeNumberOfPartitions(anyInt());
         verify(other_topic_mock_2, never()).changeNumberOfPartitions(anyInt());
+    }
+
+    @DisplayName("Return String representation of this MessageBroker by calling all topic toString() methods")
+    @Test
+    void _toString(){
+        injectedMap.put(OTHER_TOPIC_1_NAME, OTHER_TOPIC_1);
+        injectedMap.put(OTHER_TOPIC_2_NAME, OTHER_TOPIC_2);
+        injectedMap.put(OTHER_TOPIC_3_NAME, OTHER_TOPIC_3);
+
+        MessageBroker broker = new MessageBroker(LocalDateTime.now(), 50, injectedMap);
+
+        String outputOfToString = broker.toString();
+
+        String expectedOutput = String.format("Broker with  %d topics:%n", injectedMap.size()) +
+                OTHER_TOPIC_1 + OTHER_TOPIC_2 + OTHER_TOPIC_3;
+
+        Assertions.assertEquals(expectedOutput, outputOfToString);
+
     }
 
 }

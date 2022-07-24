@@ -32,22 +32,20 @@ public class TopicShouldTest {
         injectedPartitions.put(3, other_partition_mock_3);
     }
 
-    @Disabled
     @Test
     void return_String_representation_of_this_topic(){
 
         String topicName = "topic1";
         int partitionsCount = 6;
-        topic = new Topic(topicName, partitionsCount);
-        LocalDateTime timestamp = LocalDateTime.now();
-        String messageText = "Message from the system with id15273";
-        Integer messagePartition = 3;
-        String key = "DHCFB";
-        try {
-            topic.addMessage(new Message(timestamp, messageText, messagePartition, key));
-        } catch (PartitionDoesNotExistException e) {
-            throw new RuntimeException(e);
-        }
+        int partitionsLimit = 100;
+        topic = new Topic(topicName,partitionsLimit, partitionsCount, injectedPartitions);
+
+        String outputOfToString = topic.toString();
+
+        String expectedOutput = String.format("Topic: %10s Partitions: %5d%n", topicName, partitionsCount)+
+                String.format("%s%n%s%n%s", other_partition_mock_1, other_partition_mock_2, other_partition_mock_3);
+
+        Assertions.assertEquals(expectedOutput, outputOfToString);
 
     }
 
@@ -60,8 +58,6 @@ public class TopicShouldTest {
         private String topicName;
         private int topicPartitionsCount;
         private LocalDateTime messageTimestamp;
-        //        @Mock
-//        private PartitionedMessageCollection partitionedMessageCollectionMock;
 
         @BeforeEach
         void setUp() {
@@ -75,7 +71,8 @@ public class TopicShouldTest {
 
         @Test
         void throw_PartitionDoesNotExistException_if_message_partition_does_not_match_any_in_topic(){
-            topic = new Topic(topicName, topicPartitionsCount);
+            int partitionsLimit = 100;
+            topic = new Topic(topicName, partitionsLimit, topicPartitionsCount);
 
 
             Message message = new Message(messageTimestamp, messageText, messagePartition, messageKey);
@@ -89,7 +86,8 @@ public class TopicShouldTest {
             Partition partitionToAddMessageToMock = mock(Partition.class);
             injectedPartitions.put(indexOfPartitionForAddingMessages, partitionToAddMessageToMock);
 
-            topic = new Topic(topicName, topicPartitionsCount,injectedPartitions);
+            int partitionsLimit = 100;
+            topic = new Topic(topicName, partitionsLimit, topicPartitionsCount,injectedPartitions);
 
 
             messagePartition = indexOfPartitionForAddingMessages;
@@ -115,8 +113,8 @@ public class TopicShouldTest {
             Message messageToAdd = new Message(messageTimestamp, messageText, messageKey);
 
             Integer partitionIndexToAddMessageTo = PartitionAssigner.assignPartition(messageToAdd, partitions.length);
-
-            topic = new Topic(topicName, topicPartitionsCount, injectedPartitions);
+            int partitionsLimit = 100;
+            topic = new Topic(topicName, partitionsLimit, topicPartitionsCount, injectedPartitions);
 
             topic.addMessage(messageToAdd);
 
@@ -129,5 +127,32 @@ public class TopicShouldTest {
         }
     }
 
+    @Test
+    void change_number_of_partitions_if_new_number_is_greater_than_previous_partitions_count(){
+        String topicName = "topic1";
+        int oldPartitionCount = 5;
+        int partitionsLimit = 100;
+        topic = new Topic(topicName, partitionsLimit, oldPartitionCount);
 
+        int newPartitionCount = 10;
+        Assertions.assertTrue(oldPartitionCount < newPartitionCount);
+
+        Assertions.assertDoesNotThrow(()->topic.changeNumberOfPartitions(newPartitionCount));
+        Assertions.assertTrue(topic.getPartitionsCount() == newPartitionCount);
+    }
+
+    @Test
+    void throw_UnsupportedOperationException_if_new_number_is_lower_than_previous_partitions_count(){
+        String topicName = "topic1";
+        int oldPartitionCount = 5;
+        int partitionsLimit = 100;
+        topic = new Topic(topicName, partitionsLimit, oldPartitionCount);
+
+        int newPartitionCount = 1;
+
+        Assertions.assertTrue(oldPartitionCount >= newPartitionCount);
+        Assertions.assertThrows(UnsupportedOperationException.class, () ->
+                topic.changeNumberOfPartitions(newPartitionCount));
+        Assertions.assertFalse(topic.getPartitionsCount() == newPartitionCount);
+    }
 }
