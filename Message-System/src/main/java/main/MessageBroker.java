@@ -1,9 +1,9 @@
 package main;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 public class MessageBroker {
     private LocalDateTime minimumDate;  //Poceten datum
@@ -12,7 +12,7 @@ public class MessageBroker {
     public MessageBroker(LocalDateTime minimumDate, Integer partitionsLimit) {
         this.minimumDate = minimumDate;
         this.partitionsLimit = partitionsLimit;
-        this.topicMap = new HashMap<>();
+        this.topicMap = new TreeMap<>();
     }
 
     public MessageBroker(LocalDateTime minimumDate, Integer partitionsLimit, TreeMap<String, Topic> topicHashSet) {
@@ -45,7 +45,9 @@ public class MessageBroker {
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("Broker with  ").append(topicMap.size()).append(" topics:\r\n");
-        topicMap.values().forEach(builder::append);
+        builder.append(topicMap.values().stream()
+                .map(Topic::toString)
+                .collect(Collectors.joining("\r\n")));
         return builder.toString();
     }
 }

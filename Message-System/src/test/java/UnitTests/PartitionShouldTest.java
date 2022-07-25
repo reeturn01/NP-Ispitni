@@ -91,7 +91,7 @@ public class PartitionShouldTest {
 
         String outputOfToString = partition.toString();
 
-        String expectedOutput = String.format("%d : Count of messages: %5d%n",partitionIndex, injectedMessageList.size()) +
+        String expectedOutput = String.format(" %d : Count of messages: %5d%n",partitionIndex, injectedMessageList.size()) +
                 "Messages:\r\n" +
                 String.format("%s%n%s%n%s", other_message_1, other_message_2, other_message_3);
 

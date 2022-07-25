@@ -27,7 +27,7 @@ public class Partition {
     public String toString() {
         //1 : Count of messages:     4
         StringBuilder builder = new StringBuilder();
-        builder.append(partitionIndex).append(" : Count of messages:     ").append(messageList.size()).append("\r\n");
+        builder.append(String.format("%2d : Count of messages:%6d%n", partitionIndex, messageList.size()));
         builder.append("Messages:").append("\r\n");
 //        messageList.forEach(msg -> builder.append(msg).append("\r\n"));
         builder.append(messageList.stream()

@@ -41,7 +41,7 @@ public class Topic {
     public void addMessage(Message message) throws PartitionDoesNotExistException {
         if (message.getPartition() != null){
             if (message.getPartition() > partitionsCount)
-                throw new PartitionDoesNotExistException("The topic topic1 does not have a partition with number "+message.getPartition());
+                throw new PartitionDoesNotExistException(String.format("The topic %s does not have a partition with number %d",topicName, message.getPartition()));
             partitions.putIfAbsent(message.getPartition(), new Partition(message.getPartition(), partitionsLimit));
             partitions.get(message.getPartition()).addMessage(message);
         }else {
