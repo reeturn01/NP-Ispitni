@@ -224,7 +224,7 @@ public class MessageBrokerShouldTest {
         String outputOfToString = broker.toString();
 
         String expectedOutput = String.format("Broker with  %d topics:%n", injectedMap.size()) +
-                OTHER_TOPIC_1 + OTHER_TOPIC_2 + OTHER_TOPIC_3;
+                String.format("%s%n%s%n%s", OTHER_TOPIC_1, OTHER_TOPIC_2, OTHER_TOPIC_3);
 
         Assertions.assertEquals(expectedOutput, outputOfToString);
 
