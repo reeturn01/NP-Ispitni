@@ -1,0 +1,175 @@
+=== READING RECORDS ===
+Total records: 143
+=== WRITING TABLE ===
+IKI
+qlacn1 8.60
+fbvux2 8.45
+ugwfy9 8.45
+lfxrv7 8.44
+uscdn7 8.38
+fktma4 8.33
+ovyja3 8.33
+xmdwf8 8.33
+ynnih1 8.29
+oetcl5 8.26
+ooltt8 8.25
+uswaf5 8.25
+cfsxo2 8.22
+kohaq2 8.18
+lcblz5 8.15
+jfjfs4 8.14
+tzeaj6 8.08
+aiabu7 8.08
+cscbh7 8.06
+kywvp1 8.05
+neize7 8.03
+bvrhj6 8.00
+cvkic9 8.00
+hyazl2 8.00
+mpkxj0 8.00
+tuiph5 8.00
+yduky4 8.00
+lmydq2 7.96
+uwxun5 7.95
+dovut1 7.94
+kmgob4 7.86
+zrxza1 7.77
+zixwa3 7.67
+lpomu8 7.57
+gpkmd2 7.50
+duflt3 7.38
+tmsfi3 7.25
+shvui0 7.00
+KNI
+qtsgn0 9.25
+scvsw2 8.53
+poksu0 8.48
+wedcg2 8.46
+hdhvz2 8.34
+qaucf4 8.33
+lsfcd5 8.32
+tcvmn0 8.30
+jejra2 8.25
+gipon6 8.19
+hgcdl0 8.19
+uqlrl5 8.15
+pllmk2 8.14
+gnecd1 8.10
+uyfsw4 8.07
+mktft1 8.05
+pruqw4 8.04
+csnkc3 8.00
+hkoee0 8.00
+qoclm9 8.00
+sneft1 8.00
+cqrvl4 7.97
+luyep9 7.96
+gzefs0 7.95
+tcqbl4 7.95
+muxjy1 7.91
+jlzva2 7.86
+ebyix4 7.82
+xazoa3 7.82
+pzhww8 7.82
+ubtzp6 7.80
+mhplc3 7.77
+ikklx0 7.70
+vwwxd3 7.67
+bdkfp6 7.62
+MT
+gkzah3 8.58
+dqbcp0 8.35
+pcefm4 8.33
+uhevv3 8.32
+njwtf2 8.29
+hdgfb1 8.25
+jngew7 8.24
+ahnvq3 8.24
+hkpfz1 8.18
+bttqe4 8.13
+otplh1 8.13
+zhrfg5 8.09
+evvjd7 8.08
+ybbmm8 8.06
+exbwu9 8.06
+livuj3 8.05
+rwoll0 8.05
+dnfiv5 8.04
+vfrwz6 8.04
+gjxzg6 8.00
+mgkqu9 8.00
+mieyn4 7.97
+qnydp8 7.93
+zqmyo4 7.91
+dutir8 7.90
+vcnre2 7.87
+ewuck9 7.85
+ulvgi9 7.64
+blxlk8 7.62
+smnpk6 7.58
+hauab3 7.40
+qztli2 7.38
+PET
+vbgwe4 9.18
+jeovz8 8.47
+pjncv7 8.42
+miemu8 8.35
+chnhu2 8.34
+leoji7 8.33
+fownu2 8.31
+gufnd5 8.29
+mrgkn3 8.23
+felxm5 8.22
+qppka3 8.21
+bdcat0 8.20
+cwwce2 8.14
+ipfek1 8.14
+ddjle7 8.13
+sogrh5 8.10
+bptwb7 8.08
+pxipx1 8.06
+mndmo8 8.06
+mvoek1 8.05
+kmwhp5 8.03
+kpumn7 8.00
+pftyc4 8.00
+pwrfj3 7.96
+xetgd7 7.95
+vyuoj4 7.95
+laesp5 7.88
+smbuk7 7.86
+unpml9 7.83
+ahmsq2 7.77
+fbzxl5 7.75
+cmwkj0 7.74
+vktdd7 7.67
+nqehh1 7.64
+loxlc6 7.63
+nefim6 7.58
+zriou9 7.56
+kijez3 7.13
+=== WRITING DISTRIBUTION ===
+KNI
+ 6 | ***********(103)
+ 7 | ******************(173)
+ 8 | *******************(184)
+ 9 | *****************(161)
+10 | **************(138)
+PET
+ 6 | ************(119)
+ 7 | ********************(193)
+ 8 | **********************(215)
+ 9 | **********************(215)
+10 | **************(131)
+MT
+ 6 | *************(124)
+ 7 | ***************(149)
+ 8 | *********************(202)
+ 9 | *****************(164)
+10 | *************(125)
+IKI
+ 6 | ***********(108)
+ 7 | ****************(160)
+ 8 | *******************(190)
+ 9 | ******************(178)
+10 | ***********(104)
