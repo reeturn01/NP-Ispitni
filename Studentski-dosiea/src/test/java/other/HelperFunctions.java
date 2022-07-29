@@ -3,10 +3,12 @@ package other;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 
 public class HelperFunctions {
     public static final Path SAMPLE_OUTPUT_PATH = Path.of("src/test/resources/SampleOutput.txt");
     public static final Path SAMPLE_INPUT_PATH = Path.of("src/test/resources/SampleInput.txt");
+    public static final Path WRITE_TABLE_OUTPUT_DATA_PATH = Path.of("src/test/resources/writeTableOutputData.txt");
     //    public static Stream<Arguments> factoryForWriteTable() {
 //        return Stream.<Arguments>builder()
 //                .add(Arguments.of(
@@ -86,6 +88,22 @@ public class HelperFunctions {
     public static String getSampleInput() {
         try {
             return Files.readString(SAMPLE_INPUT_PATH);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static List<String> getSampleInputLines() {
+        try {
+            return Files.readAllLines(SAMPLE_INPUT_PATH);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static String readWriteTableOuputData() {
+        try {
+            return Files.readString(WRITE_TABLE_OUTPUT_DATA_PATH);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
