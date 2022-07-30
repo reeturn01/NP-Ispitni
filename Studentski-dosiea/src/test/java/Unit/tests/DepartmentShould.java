@@ -88,6 +88,7 @@ public class DepartmentShould {
         Department department = new Department(departmentName, injectedStudents);
 //[оценка со 2 места порамнети во десно] | [по еден знак * на секои 10 оценки] ([вкупно оценки])
         String expectedOutput =
+                String.format("%s%n", departmentName) +
                 String.format("%2d | **(%d)%n", 6,18)+
                 String.format("%2d | ***(%d)%n", 7,21)+
                 String.format("%2d | ***(%d)%n",8 , 24)+

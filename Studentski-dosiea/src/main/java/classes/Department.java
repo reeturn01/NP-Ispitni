@@ -32,17 +32,21 @@ public class Department {
     public void writeDepartmentStudentsTo(OutputStream out) {
         PrintWriter printWriter = new PrintWriter(out);
         printWriter.println(departmentName);
+        printWriter.flush();
         students.forEach(student -> student.printStudent(out));
 
     }
 
     public void writeDistributions(OutputStream out) {
         PrintWriter printWriter = new PrintWriter(out);
+        printWriter.println(departmentName);
+        printWriter.flush();
         for (int i = 6; i < 11; i++) {
             int countOfGradeI = returnCountOfGrade(i);
             int numberOfStars = roundNumberToTens(countOfGradeI)/10;
             String stars = "*".repeat(numberOfStars);
             printWriter.printf("%2d | %s(%d)%n", i, stars, countOfGradeI);
+            printWriter.flush();
         }
     }
 

@@ -52,7 +52,7 @@ public class Student{
     public void printStudent(OutputStream out) {
         PrintWriter printWriter = new PrintWriter(out);
         printWriter.printf("%s %.2f%n", code, getAverageGrade());
-
+        printWriter.flush();
     }
 
     public int returnCountOfGrade(int grade) {
