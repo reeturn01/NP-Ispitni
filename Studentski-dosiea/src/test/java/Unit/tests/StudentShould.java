@@ -52,10 +52,13 @@ public class StudentShould {
     }
     @ParameterizedTest
     @CsvSource({
-            "9 10 8 8 10 9 6 7 7 6 9 9 7 7 10 9 6 10 10 8 6 7 9 7 9 7 6, 5",
-            "8 7 8 6 9 6 8 7 9, 0"
+            "9 10 8 8 10 9 6 7 7 6 9 9 7 7 10 9 6 10 10 8 6 7 9 7 9 7 6, 6, 5",
+            "8 7 8 6 9 6 8 7 9, 7, 2",
+            "9 9 9 9 9 9 9 9 9, 8, 0",
+            "9 8 7 6 5 4 3 2 1, 9, 1",
+            "10 10 10 10 10, 10, 5"
     })
-    void returnNumberOfTens(String gradesString, int expectedOutput){
+    void returnCountOfGrade(String gradesString, int grade, int expectedOutput){
         List<Integer> grades = Arrays.stream(gradesString.split("\\s+"))
                 .mapToInt(Integer::parseInt)
                 .boxed()
@@ -63,6 +66,6 @@ public class StudentShould {
 
         Student student = new Student("", "", grades);
 
-        Assertions.assertEquals(expectedOutput, student.returnCountOfGrade(10));
+        Assertions.assertEquals(expectedOutput, student.returnCountOfGrade(grade));
     }
 }

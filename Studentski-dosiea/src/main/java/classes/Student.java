@@ -51,10 +51,10 @@ public class Student{
         printWriter.flush();
     }
 
-    public int returnCountOfGrade(int grade) {
+    public int returnCountOfGrade(int gradeToCount) {
         return (int) grades.stream()
                 .mapToInt(Integer::intValue)
-                .filter(g -> g==10)
+                .filter(g -> g == gradeToCount)
                 .count();
     }
 }
