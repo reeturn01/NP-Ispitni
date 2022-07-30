@@ -2,7 +2,9 @@ package classes;
 
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.util.*;
+import java.util.Comparator;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 public class Department {
