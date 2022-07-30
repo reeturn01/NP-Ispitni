@@ -32,15 +32,20 @@ public class StudentShould {
 
     @ParameterizedTest
     @CsvSource({
-            "9 10 8 8 10 9 6 7 7 6 9 9 7 7 10 9 6 10 10 8 6 7 9 7 9 7 6, 8.0",
-            "8 7 8 6 9 6 8 7 9, 7.56",
-            "7 7 9 6 9 9 7 8 8 8 8 7 10 9 8 10 9 9, 8.22"
+            "9 10 8 8 10 9 6 7 7 6 9 9 7 7 10 9 6 10 10 8 6 7 9 7 9 7 6",
+            "8 7 8 6 9 6 8 7 9",
+            "7 7 9 6 9 9 7 8 8 8 8 7 10 9 8 10 9 9"
     })
-    void getAverageGrade(String gradesString, double expectedAverage){
+    void getAverageGrade(String gradesString){
         List<Integer> grades = Arrays.stream(gradesString.split("\\s+"))
-                .mapToInt(Integer::parseInt)
-                .boxed()
-                .collect(Collectors.toList());
+                                        .mapToInt(Integer::parseInt)
+                                        .boxed()
+                                        .collect(Collectors.toList());
+        double expectedAverage = grades.stream()
+                                        .mapToDouble(Integer::doubleValue)
+                                        .average()
+                                        .orElse(0);
+
         Student student = new Student("", "", grades);
 
         Assertions.assertEquals(expectedAverage, student.getAverageGrade());

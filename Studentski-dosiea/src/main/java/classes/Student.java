@@ -39,14 +39,10 @@ public class Student{
     }
 
     public double getAverageGrade() {
-        double average = grades.stream()
+        return grades.stream()
                 .mapToDouble(Integer::doubleValue)
                 .average()
                 .orElse(0);
-
-        BigDecimal bigDecimal = new BigDecimal(average).setScale(2, RoundingMode.HALF_UP);
-
-        return bigDecimal.doubleValue();
     }
 
     public void printStudent(OutputStream out) {
