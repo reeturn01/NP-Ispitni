@@ -1,0 +1,15 @@
+typical_usage
+Banka na RM
+2
+Andrej
+10.00$
+Gajduk
+10.00$
+print
+transaction
+FlatAmount
+5.00$
+2.00$
+0 1
+print
+stop

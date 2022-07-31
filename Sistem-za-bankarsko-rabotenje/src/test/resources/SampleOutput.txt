@@ -1,0 +1,22 @@
+Name: Banka na RM
+
+Name: Andrej
+Balance: 10.00$
+Name: Gajduk
+Balance: 10.00$
+
+Total provisions: 0.00$
+Total transfers: 0.00$
+
+Transaction amount: 5.00$
+Transaction description: FlatAmount
+Transaction successful? true
+Name: Banka na RM
+
+Name: Andrej
+Balance: 3.00$
+Name: Gajduk
+Balance: 15.00$
+
+Total provisions: 2.00$
+Total transfers: 5.00$
