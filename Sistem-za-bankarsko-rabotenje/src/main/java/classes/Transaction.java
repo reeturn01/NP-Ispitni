@@ -2,11 +2,7 @@ package classes;
 
 import exceptions.NotImplementedException;
 
-public class Transaction {
-
-    public Transaction() {
-        throw new NotImplementedException();
-    }
+public abstract class Transaction {
 
     public String getAmount() {
         throw new NotImplementedException();
