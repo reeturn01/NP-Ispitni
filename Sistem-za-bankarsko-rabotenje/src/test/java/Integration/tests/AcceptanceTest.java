@@ -19,7 +19,7 @@ public class AcceptanceTest {
 
     private final ByteArrayInputStream stdInputInjector = new ByteArrayInputStream(HelperFunctions.readTextFile(SAMPLE_INPUT_PATH).getBytes(StandardCharsets.UTF_8));
     private final ByteArrayOutputStream stdOutputCaptor = new ByteArrayOutputStream();
-    private String expectedOutput = HelperFunctions.readTextFile(SAMPLE_OUTPUT_PATH);
+    private final String expectedOutput = HelperFunctions.readTextFile(SAMPLE_OUTPUT_PATH);
 
     @BeforeEach
     void setUp() {
