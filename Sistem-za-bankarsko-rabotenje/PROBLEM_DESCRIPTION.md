@@ -42,6 +42,11 @@
 Првата класа _**FlatAmountProvisionTransaction**_ треба да содржи соодветен конструктор
 
 - _**FlatAmountProvisionTransaction(long fromId, long toId,String amount, String flatProvision)**_ кој го иницијализира полето за опис на "_**FlatAmount**_" и соодветен get метод
+- _**getFlatAmount():String**_
+
+Слично и класата _**FlatPercentProvisionTransaction**_ треба да има соодветен конструктор
+
+- _**FlatPercentProvisionTransaction (long fromId, long toId, String amount, int centsPerDolar)**_ кој го иницијализира полето за опис на "_**FlatPercent**_" и соодветен get метод
 - _**getPercent():int**_
 
 Исто така треба да се преоптовари _**equals(Object o):boolean**_ методот и за двете класи.
