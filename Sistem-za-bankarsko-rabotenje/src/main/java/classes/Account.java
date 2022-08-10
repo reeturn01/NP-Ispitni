@@ -1,5 +1,7 @@
 package classes;
 
+import exceptions.NotImplementedException;
+
 import java.util.Objects;
 import java.util.Random;
 
@@ -63,5 +65,45 @@ public class Account {
     @Override
     public int hashCode() {
         return Objects.hash(name, id, balanceDollars, balanceCents);
+    }
+
+    public void withdraw(String amount) {
+        String [] amountToWithdrawParts = amount.split("[.$]");
+        int amountToWithdrawDollars = Integer.parseInt(amountToWithdrawParts[0]);
+        int amountToWithdrawCents = Integer.parseInt(amountToWithdrawParts[1]);
+
+        String [] balanceParts = this.getBalance().split("[.$]");
+        int balanceDollars = Integer.parseInt(balanceParts[0]);
+        int balanceCents = Integer.parseInt(balanceParts[1]);
+
+        if (amountToWithdrawCents > balanceCents){
+            balanceCents += 100;
+            balanceDollars--;
+        }
+        balanceCents = balanceCents-amountToWithdrawCents;
+        balanceDollars = balanceDollars - amountToWithdrawDollars;
+
+        String newBalance = String.format("%d.%2d$", balanceDollars, balanceCents);
+        this.setBalance(newBalance);
+
+    }
+
+    public void deposit(String amount) {
+        String [] amountToDepositParts = amount.split("[.$]");
+        int amountToDepositDollars = Integer.parseInt(amountToDepositParts[0]);
+        int amountToDepositCents = Integer.parseInt(amountToDepositParts[1]);
+
+        String [] balanceParts = this.getBalance().split("[.$]");
+        int balanceDollars = Integer.parseInt(balanceParts[0]);
+        int balanceCents = Integer.parseInt(balanceParts[1]);
+
+        if (balanceCents+amountToDepositCents >= 100){
+            balanceDollars++;
+        }
+        balanceCents = (balanceCents+amountToDepositCents)%100;
+        balanceDollars = balanceDollars + amountToDepositDollars;
+
+        String newBalance = String.format("%d.%2d$", balanceDollars, balanceCents);
+        this.setBalance(newBalance);
     }
 }

@@ -3,11 +3,15 @@ package classes;
 import exceptions.NotImplementedException;
 
 public class FlatPercentProvisionTransaction extends Transaction{
-    public FlatPercentProvisionTransaction() {
-        throw new NotImplementedException();
+
+    private final int centsPerDollar;
+
+    public FlatPercentProvisionTransaction(long fromId, long toId, String amount, int centsPerDollar) {
+        super(fromId, toId, "FlatPercent", amount);
+        this.centsPerDollar = centsPerDollar;
     }
 
-    public FlatPercentProvisionTransaction(long i, long i1, String s, int i2) {
-        throw new NotImplementedException();
+    public int getPercent(){
+        return centsPerDollar;
     }
 }

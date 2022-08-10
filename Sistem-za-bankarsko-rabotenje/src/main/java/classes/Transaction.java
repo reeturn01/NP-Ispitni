@@ -2,21 +2,21 @@ package classes;
 
 public abstract class Transaction {
 
-    private long formId;
+    private long fromId;
     private long toId;
     private String description;
     private String amount;
 
-    Transaction(long formId, long toId, String description, String amount){
+    Transaction(long fromId, long toId, String description, String amount){
 
-        this.formId = formId;
+        this.fromId = fromId;
         this.toId = toId;
         this.description = description;
         this.amount = amount;
     }
 
-    public long getFormId() {
-        return formId;
+    public long getFromId() {
+        return fromId;
     }
 
     public long getToId() {
@@ -30,4 +30,6 @@ public abstract class Transaction {
     public String getDescription() {
         return description;
     }
+
+    public abstract String getAmountWithProvision();
 }
