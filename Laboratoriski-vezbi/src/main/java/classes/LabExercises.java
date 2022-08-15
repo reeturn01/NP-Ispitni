@@ -1,6 +1,7 @@
 package classes;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static java.util.Comparator.*;
 import static java.util.stream.Collectors.*;
@@ -36,11 +37,6 @@ public class LabExercises {
     public Map<Integer, Double> getStatisticsByYear() {
         return students.stream()
                 .filter(student -> !student.hasFailed())
-                .collect(groupingBy(Student::getStudentYear, TreeMap::new, collectingAndThen(
-                        toList(), list -> list.stream()
-                                .mapToDouble(Student::averagePoints)
-                                .average()
-                                .orElse(0.0)
-                )));
+                .collect(groupingBy(Student::getStudentYear, TreeMap::new, averagingDouble(Student::averagePoints)));
     }
 }
