@@ -2,6 +2,6 @@ package main;
 
 import java.time.LocalDateTime;
 
-interface IHasTimestamp {
+public interface IHasTimestamp {
     LocalDateTime getTimestamp();
 }

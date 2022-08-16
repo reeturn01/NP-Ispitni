@@ -2,7 +2,7 @@ package main;
 
 import java.time.LocalDateTime;
 
-class TwoIntegersElement implements Comparable<TwoIntegersElement>, IHasTimestamp {
+public class TwoIntegersElement implements Comparable<TwoIntegersElement>, IHasTimestamp {
 
     int value1;
     int value2;
